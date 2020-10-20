@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+    {%block tickets %}
+<style type="text/css" media="screen">
+</style>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Problem</th>
+      <th scope="col">Operating System</th>
+      <th scope="col">Browser</th>
+        <th scope="col">Time</th>
+              <th scope="col">Contact Info</th>
+        <th scope ="col">Status</th>
+        <th scope ="col">Technitian</th>
+        <th scope ="col">Communication</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in items %}
+    <tr>
+      <th scope="row">{{item[0]}}</th>
+      <td style="word-wrap: break-word; min-width: 160px; max-width: 160px;">{{item[1]}}</td>
+      <td>{{item[2]}}</td>
+      <td>{{item[3]}}</td>
+        <td>{{item[4]}}</td>
+        <td>{{item[5]}}</td>
+                      <form name = "Status" method='POST' action="{{ url_for('tickets') }}">
+      {% if item[6] == "1" %}
+        <td>
+            <select name = "Status1" class="form-control">
+    <option value="1 {{item[0]}}" >Not Started</option>
+    <option value="2 {{item[0]}}">In Progress</option>
+    <option value="3 {{item[0]}}">Complete</option>
+</select>
+                <button type="submit" class="btn navbar-btn btn-success" name="submit_button" id="Submit1"  value="Submit1">Submit</button></li>
+        </td>
+
+      {% elif item[6] == "2" %}
+              <td>
+            <select name = "Status2" class="form-control" >
+    <option value="2 {{item[0]}}">In Progress</option>
+    <option value="3 {{item[0]}}">Complete</option>
+    <option value="1 {{item[0]}}" disabled>Not Started</option>
+</select>
+                  <button type="submit" class="btn navbar-btn btn-success" name="submit_button" id="Submit2"  value="Submit2">Submit</button></li>
+        </td>
+      {% elif item[6] == "3" %}
+      <td>
+            <select name = "Status3" class="form-control">
+    <option value="3 {{item[0]}}">Complete</option>
+    <option value="1 {{item[0]}}" disabled>Not Started </option>
+    <option value="2 {{item[0]}}">In Progress</option>
+</select>
+                <button type="submit" class="btn navbar-btn btn-success" name="submit_button" id="Submit3"  value="Submit3">Submit</button>
+      {% endif %}
+                          <td>{{item[7]}}</td>
+              </form>
+                <td>{{item[8]}}</td>
+          {% endfor %}
+
+    </tr>
+  </tbody>
+</table>
+
+    {% endblock %}
+
+{%block ticketstatus %}
+         <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Show Status
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="extendednavbar">
+  <form class="px-4 py-3" method = "post">
+    <div class="form-check">
+        {% if  statusdropmenu1 == "2" %}
+      <input type="checkbox" class="form-check-input" id="dropdownCheck1" name = "dropdownCheck1" checked>
+      <label class="form-check-label" for="dropdownCheck1">
+        Not Started
+      </label>
+        {% else %}
+              <input type="checkbox" class="form-check-input" id="dropdownCheck12" name = "dropdownCheck1">
+      <label class="form-check-label" for="dropdownCheck1">
+        Not Started
+      </label>
+        {% endif %}
+    </div>
+          <div class="form-check">
+              {% if  statusdropmenu2 == "2" %}
+      <input type="checkbox" class="form-check-input" id="dropdownCheck2" name = "dropdownCheck2" checked>
+      <label class="form-check-label" for="dropdownCheck2">
+        In Progress
+      </label>
+              {% else %}
+              <input type="checkbox" class="form-check-input" id="dropdownCheck21" name = "dropdownCheck2" >
+      <label class="form-check-label" for="dropdownCheck2">
+        In Progress
+      </label>
+              {% endif %}
+    </div>
+          <div class="form-check">
+              {% if  statusdropmenu3 == "2" %}
+      <input type="checkbox" class="form-check-input" id="dropdownCheck3" name = "dropdownCheck3" checked>
+      <label class="form-check-label" for="dropdownCheck3">
+        Completed
+      </label>
+              {% else %}
+              <input type="checkbox" class="form-check-input" id="dropdownCheck31" name = "dropdownCheck3" >
+      <label class="form-check-label" for="dropdownCheck3">
+        Completed
+      </label>
+              {% endif %}
+              <div class="dropdown-divider"></div>
+    </div>
+      <div class="col text-center">
+                                <form name = "Status4" method='POST' action="{{ url_for('tickets') }}">
+    <button type="submit" class="btn navbar-btn btn-success" name="SaveStatus_button" id="SaveStatus"  value="SaveStatus">Save</button>
+                                </form>
+      </div>
+  </form>
+            </div>
+          </li>
+          </ul>
+
+{% endblock %}
