@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{%block currenttickets %}
+<style type="text/css" media="screen">
+</style>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col" >#</th>
+      <th scope="col">Problem</th>
+      <th scope="col">Operating System</th>
+      <th scope="col">Browser</th>
+        <th scope="col">Time</th>
+              <th scope="col">Contact Info</th>
+        <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in items %}
+  <form name = "Resolve" method='POST' action="{{ url_for('assignedtickets') }}">
+    <tr name = ticket_id>
+      <th scope="row" name = "ticket_id" >{{item[0]}}</th>
+            <input type = "hidden" name = "ticket_id" value = "{{item[0]}}"/>
+      <td style="word-wrap: break-word; min-width: 160px; max-width: 160px;">{{item[1]}}</td>
+      <td>{{item[2]}}</td>
+      <td>{{item[3]}}</td>
+        <td>{{item[4]}}</td>
+        <td>{{item[5]}}</td>
+              <td>
+                  <button type="submit" class="btn navbar-btn btn-success" name="submit_button_current_tickets" id="Resolve"  value="Resolve">Resolve</button></li>
+        </td>
+  </form>
+          {% endfor %}
+
+    </tr>
+  </tbody>
+</table>
+    </form>
+{{ticket_id_passed}}
+    {% endblock %}
