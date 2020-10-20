@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'loginstyle.css')}}"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Login</title>
+</head>
+<body>
+	<div class="container" id="container">
+		<div class="form-container log-in-container">
+			<form action="#" method = "post">
+				<h1>Login</h1>
+				<input type="email" placeholder="Email", name = "email" />
+				<input type="password" placeholder="Password", name = "password"/>
+				<a href="#">Forgot your password?</a>
+				<input type = "submit" value = "Login"/>
+				{% with messages = get_flashed_messages() %}
+         {% if messages %}
+               {% for message in messages %}
+               <li>{{ message }}</li>
+               {% endfor %}
+         {% endif %}
+      {% endwith %}
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-right">
+					<h1>Penn State</h1>
+					<p>Login using your help desk credentials given to you. If you forgot your password or need an account please contact Daniel or Nathan</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
