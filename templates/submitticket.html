@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{%block submittickets %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <!--<h1 class="display-4">Submit your ticket</h1>-->
+    <p class="display-4" id = submittickettext>Submit your ticket</p>
+  </div>
+  <hr>
+</div>
+<form method = "post" id = container action = "/submitticket">
+  <div class="container">
+
+  <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+          <form id="contact-form" class="form" action="#" method="POST" role="form">
+              <div class="form-group">
+                  <label class="form-label" for="Name">Name</label>
+                  <textarea rows="1" cols="50" name="Name" class="form-control" id="Name" placeholder="Your Name..." tabindex="1" required></textarea>
+              </div>
+              <div class="form-group">
+                  <label class="form-label" for="email">Your Email (Current Account If Logged In)</label>
+                  <input type="text" class="form-control" id="email" name="email" placeholder="{{username}}" tabindex="2" >
+              </div>
+                        <div class="form-group">
+                  <label class="form-label" for="Operating_system">Operating System</label>
+                  <textarea rows="1" cols="50" name="Operating_system" class="form-control" id="Operating_system" placeholder="Your Operating System(ie.Windows, MacOs) if applicable" tabindex="5" required></textarea>
+              </div>
+            <div class="form-group">
+                  <label class="form-label" for="Browser">Browser</label>
+                  <textarea rows="1" cols="50" name="Browser" class="form-control" id="Browser" placeholder="Your Browser..." tabindex="5" required></textarea>
+              </div>
+                          <div class="form-group">
+                  <label class="form-label" for="problem">Problem</label>
+                  <textarea rows="5" cols="50" name="Problem" class="form-control" id="problem" placeholder="Problem..." tabindex="5" required></textarea>
+              </div>
+              <div class="text-center">
+                  <button type="submit" class="btn btn-start-order">Send Ticket</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+</form>
+{% endblock %}
