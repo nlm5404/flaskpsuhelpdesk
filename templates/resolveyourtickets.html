@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{%block resolveticket %}
+<style type="text/css" media="screen">
+</style>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <!--<h1 class="display-4">Submit your ticket</h1>-->
+    <p class="display-4" id = submittickettext>Resolve ticket</p>
+  </div>
+  <hr>
+</div>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th scope="col" >#</th>
+      <th scope="col">Problem</th>
+      <th scope="col">Operating System</th>
+      <th scope="col">Browser</th>
+        <th scope="col">Time</th>
+              <th scope="col">Contact Info</th>
+        <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in items %}
+  <form name = "Resolve" method='POST' action="{{ url_for('resolveyourtickets') }}">
+    <tr name = ticket_id>
+      <th scope="row" name = "ticket_id" >{{item[0]}}</th>
+            <input type = "hidden" name = "ticket_id" value = "{{item[0]}}"/>
+      <td style="word-wrap: break-word; min-width: 160px; max-width: 160px;">{{item[1]}}</td>
+      <td>{{item[2]}}</td>
+      <td>{{item[3]}}</td>
+        <td>{{item[4]}}</td>
+        <td>{{item[5]}}</td>
+              <td>{{item[6]}}</td>
+  </form>
+          {% endfor %}
+
+    </tr>
+  </tbody>
+</table>
+    </form>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <form name = "SendComment" method='POST' action="{{ url_for('resolveyourtickets') }}">
+<div class="container pb-cmnt-container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-3">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <textarea name="WriteComment" id="WriteComment" placeholder="Write your comment here!" class="pb-cmnt-textarea"></textarea>
+                    <form class="form-inline">
+                        <div class="btn-group">
+                            <button class="btn" type="button"><span class="fa fa-picture-o fa-lg"></span></button>
+                        </div>
+                        <button type="submit" class="btn btn-primary pull-right" type="button" name = "comment_button" id = "comment_button" value = "comment_button">Comment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  </form>
+<div class="container">
+      {% for comment in comments %}
+	<div class="card" >
+	    <div class="card-body">
+	        <div class="row">
+        	    <div class="col-md-12">
+        	        <p>
+        	            <a class="float-center" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"><strong>{{comment[1]}}</strong></a>
+        	       </p>
+        	       <div class="clearfix"></div>
+        	        <p>{{comment[2]}}</p>
+        	    </div>
+	        </div>
+	    </div>
+	</div>
+    {% endfor %}
+</div>
+
+<style>
+    .pb-cmnt-container {
+        font-family: Lato;
+        margin-top: 100px;
+    }
+
+    .pb-cmnt-textarea {
+        resize: none;
+        padding: 20px;
+        height: 130px;
+        width: 100%;
+        border: 1px solid #F2F2F2;
+    }
+</style>
+</div>
+
+    {% endblock %}
